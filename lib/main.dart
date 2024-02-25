@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recipes/ui/screens/cooking/cooking_screen.dart';
+import 'package:recipes/ui/screens/register/change_password_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,17 +12,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Recipes',
+      title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: const ColorScheme.light(),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       darkTheme: ThemeData(
-        colorScheme: const ColorScheme.dark(),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      themeMode: ThemeMode.light,
-      home: CookingScreen(),
+      themeMode: ThemeMode.dark,
+      home: ChangePasswordScreen(),
     );
   }
 }
