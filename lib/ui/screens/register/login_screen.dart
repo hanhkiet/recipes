@@ -20,7 +20,10 @@ class LoginScreen extends StatelessWidget {
           const SizedBox(height: 16.0),
           const EmailTextField(),
           const SizedBox(height: 16.0),
-          const PasswordTextField(),
+          const PasswordTextField(
+            label: 'Password',
+            helperText: 'Wrong password',
+          ),
           const SizedBox(height: 16.0),
           Container(
             constraints: const BoxConstraints(maxWidth: 400, minWidth: 200),
