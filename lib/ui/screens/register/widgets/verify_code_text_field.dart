@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
-class EmailTextField extends StatelessWidget {
-  const EmailTextField({
-    super.key,
-  });
+class VerifyCodeTextField extends StatelessWidget {
+  const VerifyCodeTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        labelText: 'Email',
+        labelText: 'Verify code',
         labelStyle: TextStyle(
           color: Theme.of(context).colorScheme.onSurface,
         ),
@@ -18,8 +16,12 @@ class EmailTextField extends StatelessWidget {
             color: Theme.of(context).colorScheme.primary,
           ),
         ),
-        prefixIcon: const Icon(Icons.email),
-        helperText: 'Email is not valid',
+        prefixIcon: const Icon(Icons.numbers),
+        suffixIcon: const TextButton(
+          onPressed: null,
+          child: Text('Send code'),
+        ),
+        helperText: 'Entered code does not match the sent code',
       ),
     );
   }

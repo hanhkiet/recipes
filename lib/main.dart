@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recipes/ui/screens/register/login_screen.dart';
-import 'package:recipes/ui/screens/register/register_screen.dart';
+import 'package:recipes/ui/screens/register/forgot_password.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       themeMode: ThemeMode.dark,
-      home: const RegisterScreen(),
+      home: const ForgotPasswordScreen(),
     );
   }
 }

@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
         children: [
           Text(
             'Login',
-            style: Theme.of(context).textTheme.displayMedium,
+            style: Theme.of(context).textTheme.displaySmall,
           ),
           const SizedBox(height: 16.0),
           const EmailTextField(),

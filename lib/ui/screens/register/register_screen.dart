@@ -12,7 +12,7 @@ class RegisterScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Register', style: Theme.of(context).textTheme.displayMedium),
+          Text('Register', style: Theme.of(context).textTheme.displaySmall),
           const SizedBox(height: 16.0),
           const EmailTextField(),
           const SizedBox(height: 16.0),
