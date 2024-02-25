@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipes/ui/screens/cooking/cooking_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +14,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Recipes',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: const ColorScheme.light(),
         useMaterial3: true,
       ),
-      home: Container(),
+      darkTheme: ThemeData(
+        colorScheme: const ColorScheme.dark(),
+        useMaterial3: true,
+      ),
+      themeMode: ThemeMode.light,
+      home: CookingScreen(),
     );
   }
 }
