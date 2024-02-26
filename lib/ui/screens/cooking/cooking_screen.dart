@@ -27,8 +27,7 @@ class CookingScreen extends StatelessWidget {
               childCount: data.steps.length,
               (BuildContext context, int index) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 16.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: CookingStep(data: data.steps[index]),
                 );
               },

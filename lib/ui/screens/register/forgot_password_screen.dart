@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:recipes/ui/screens/register/widgets/app_scaffold.dart';
 import 'package:recipes/ui/screens/register/widgets/email_text_field.dart';
 import 'package:recipes/ui/screens/register/widgets/verify_code_text_field.dart';
 
@@ -8,9 +7,9 @@ class ForgotPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
+    return SingleChildScrollView(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text('Forgot password',
               style: Theme.of(context).textTheme.displaySmall),
