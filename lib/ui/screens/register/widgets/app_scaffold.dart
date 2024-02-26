@@ -12,8 +12,10 @@ class AppScaffold extends StatelessWidget {
         child: SafeArea(
           child: Center(
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 8.0,
+              ),
               child: child,
             ),
           ),
