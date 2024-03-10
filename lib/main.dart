@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get_it/get_it.dart';
+import 'package:recipes/logic/supabase_api_service.dart';
 import 'package:recipes/router.dart';
 
-void main() {
+Future<void> main() async {
+  await dotenv.load();
+  registerServices();
+
   runApp(const MyApp());
 }
 
@@ -34,3 +40,12 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+void registerServices() {
+  GetIt.I.registerSingletonAsync(() async => await SupabaseAPIService.create(
+        apiUrl: dotenv.env['SUPABASE_API_URL'] ?? '',
+        anonKey: dotenv.env['SUPABASE_ANON_KEY'] ?? '',
+      ));
+}
+
+SupabaseAPIService get supabaseAPIService => GetIt.I<SupabaseAPIService>();

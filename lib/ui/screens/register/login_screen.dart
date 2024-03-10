@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16.0),
-          Separator(title: 'OR'),
+          const Separator(title: 'OR'),
           const SizedBox(height: 16.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
