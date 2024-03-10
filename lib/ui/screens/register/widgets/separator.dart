@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Separator extends StatelessWidget {
-  Separator({
+  const Separator({
     super.key,
     required this.title,
   });
