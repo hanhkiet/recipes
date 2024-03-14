@@ -47,5 +47,3 @@ void registerServices() {
         anonKey: dotenv.env['SUPABASE_ANON_KEY'] ?? '',
       ));
 }
-
-SupabaseAPIService get supabaseAPIService => GetIt.I<SupabaseAPIService>();

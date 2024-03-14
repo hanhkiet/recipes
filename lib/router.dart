@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:recipes/main.dart';
+import 'package:recipes/singleton.dart';
 import 'package:recipes/ui/screens/cooking/cooking_screen.dart';
 import 'package:recipes/ui/screens/personalization/personalization_done.dart';
 import 'package:recipes/ui/screens/personalization/personalization_height.dart';
