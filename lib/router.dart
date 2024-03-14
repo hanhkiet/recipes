@@ -3,7 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:recipes/main.dart';
 import 'package:recipes/ui/screens/cooking/cooking_screen.dart';
 import 'package:recipes/ui/screens/personalization/personalization_done.dart';
+import 'package:recipes/ui/screens/personalization/personalization_height.dart';
 import 'package:recipes/ui/screens/personalization/personalization_introduction.dart';
+import 'package:recipes/ui/screens/personalization/personalization_person_type.dart';
+import 'package:recipes/ui/screens/personalization/personalization_weight.dart';
 import 'package:recipes/ui/screens/register/change_password_screen.dart';
 import 'package:recipes/ui/screens/register/forgot_password_screen.dart';
 import 'package:recipes/ui/screens/register/login_screen.dart';
@@ -20,12 +23,15 @@ class ScreenPaths {
   static String changePassword = '/change-password';
   static String personalizationIntroduction = '/personalization-introduction';
   static String personalizationDone = '/personalization-done';
+  static String personalizationPersonType = '/personalization-person-type';
+  static String personalizationHeight = '/personalization-height';
+  static String personalizationWeight = '/personalization-weight';
   static String cooking = '/cooking';
   static String testData = '/test-data';
 }
 
 final appRouter = GoRouter(
-  initialLocation: ScreenPaths.testData,
+  initialLocation: ScreenPaths.personalizationIntroduction,
   routes: [
     ShellRoute(
       builder: (context, router, navigator) {
@@ -48,6 +54,15 @@ final appRouter = GoRouter(
             path: ScreenPaths.personalizationIntroduction,
             builder: (context, state) =>
                 const PersonalizationIntroductionScreen()),
+        GoRoute(
+            path: ScreenPaths.personalizationHeight,
+            builder: (context, state) => const PersonalizationHeight()),
+        GoRoute(
+            path: ScreenPaths.personalizationWeight,
+            builder: (context, state) => const PersonalizationWeight()),
+        GoRoute(
+            path: ScreenPaths.personalizationPersonType,
+            builder: (context, state) => const PersonalizationPersonType()),
         GoRoute(
             path: ScreenPaths.personalizationDone,
             builder: (context, state) => const PersonalizationDoneScreen()),

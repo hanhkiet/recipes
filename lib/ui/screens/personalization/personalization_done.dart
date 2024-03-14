@@ -10,7 +10,7 @@ class PersonalizationDoneScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Center(
           child: Text(
-            'You are all set!',
+            'Already done !',
             style: Theme.of(context).textTheme.displayMedium,
             textAlign: TextAlign.center,
           ),
