@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
+import 'package:recipes/logic/personalization_logic.dart';
+import 'package:recipes/logic/registering_logic.dart';
+import 'package:recipes/logic/setting_logic.dart';
 import 'package:recipes/logic/supabase_api_service.dart';
 import 'package:recipes/router.dart';
 
 Future<void> main() async {
   await dotenv.load();
+
   registerServices();
+  registerLogic();
 
   runApp(const MyApp());
 }
@@ -48,4 +53,8 @@ void registerServices() {
       ));
 }
 
-SupabaseAPIService get supabaseAPIService => GetIt.I<SupabaseAPIService>();
+void registerLogic() {
+  GetIt.I.registerSingleton(() => PersonalizationLogic());
+  GetIt.I.registerSingleton(() => RegisteringLogic());
+  GetIt.I.registerSingleton(() => SettingLogic());
+}
