@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../router.dart';
+import 'package:recipes/router.dart';
 
 class PersonalizationWeight extends StatefulWidget {
   const PersonalizationWeight({super.key});
