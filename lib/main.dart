@@ -63,10 +63,11 @@ class _RecipesAppState extends State<RecipesApp> with GetItStateMixin {
 }
 
 void registerServices() {
-  GetIt.I.registerSingletonAsync(() async => await SupabaseAPIService.create(
-        apiUrl: dotenv.env['SUPABASE_API_URL'] ?? '',
-        anonKey: dotenv.env['SUPABASE_ANON_KEY'] ?? '',
-      ));
+  GetIt.I.registerSingletonAsync<SupabaseAPIService>(
+      () async => await SupabaseAPIService.create(
+            apiUrl: dotenv.env['SUPABASE_API_URL'] ?? '',
+            anonKey: dotenv.env['SUPABASE_ANON_KEY'] ?? '',
+          ));
 }
 
 void registerLogics() {
