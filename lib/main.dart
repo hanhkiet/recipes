@@ -1,23 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
+import 'package:get_it_mixin/get_it_mixin.dart';
+import 'package:recipes/logic/account_logic.dart';
+import 'package:recipes/logic/app_theme_provider.dart';
+import 'package:recipes/logic/cooking_logic.dart';
 import 'package:recipes/logic/personalization_logic.dart';
-import 'package:recipes/logic/registering_logic.dart';
 import 'package:recipes/logic/setting_logic.dart';
 import 'package:recipes/logic/supabase_api_service.dart';
 import 'package:recipes/router.dart';
+import 'package:recipes/singletons.dart';
 
 Future<void> main() async {
   await dotenv.load();
 
   registerServices();
-  registerLogic();
+  registerLogics();
 
-  runApp(const MyApp());
+  runApp(RecipesApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class RecipesApp extends StatefulWidget with GetItStatefulWidgetMixin {
+  RecipesApp({super.key});
+
+  @override
+  State<RecipesApp> createState() => _RecipesAppState();
+}
+
+class _RecipesAppState extends State<RecipesApp> with GetItStateMixin {
+  late final themeModeNotifier = appThemeProvider.themeModeNotifier
+    ..addListener(_handleChangeThemeMode);
+
+  void _handleChangeThemeMode() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +54,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      themeMode: ThemeMode.light,
+      themeMode: themeModeNotifier.value,
       routerDelegate: appRouter.routerDelegate,
       routeInformationParser: appRouter.routeInformationParser,
       routeInformationProvider: appRouter.routeInformationProvider,
@@ -53,8 +69,12 @@ void registerServices() {
       ));
 }
 
-void registerLogic() {
-  GetIt.I.registerSingleton(() => PersonalizationLogic());
-  GetIt.I.registerSingleton(() => RegisteringLogic());
-  GetIt.I.registerSingleton(() => SettingLogic());
+void registerLogics() {
+  GetIt.I.registerLazySingleton<AppThemeProvider>(() => AppThemeProvider());
+
+  GetIt.I.registerLazySingleton<PersonalizationLogic>(
+      () => PersonalizationLogic());
+  GetIt.I.registerLazySingleton<AccountLogic>(() => AccountLogic());
+  GetIt.I.registerLazySingleton<SettingLogic>(() => SettingLogic());
+  GetIt.I.registerLazySingleton<CookingLogic>(() => CookingLogic());
 }

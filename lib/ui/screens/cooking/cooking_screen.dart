@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:recipes/data/recipe.dart';
+import 'package:recipes/singletons.dart';
 import 'package:recipes/ui/screens/cooking/widgets/cooking_step.dart';
 
 class CookingScreen extends StatelessWidget {
-  CookingScreen({super.key});
-
-  final RecipeData data = recipesData[1];
+  const CookingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final data = cookingLogic.data;
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -47,7 +47,9 @@ class CookingScreen extends StatelessWidget {
           ),
           const SizedBox(width: 12),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              appThemeProvider.toggleTheme();
+            },
             child: const Text('Stop'),
           ),
         ],
