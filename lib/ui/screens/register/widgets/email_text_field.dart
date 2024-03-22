@@ -4,10 +4,22 @@ class EmailTextField extends StatelessWidget {
   const EmailTextField({
     super.key,
   });
+  final _emailPattern = r'^[^\.\s][\w\-\.{2,}]+@([\w-]+\.)+[\w-]{2,}$';
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    final emailRegex = RegExp(_emailPattern);
+    return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter your email';
+        }
+        if (!emailRegex.hasMatch(value)) {
+          return 'Email format is wrong !';
+        }
+        return null;
+      },
       decoration: InputDecoration(
         labelText: 'Email',
         labelStyle: TextStyle(
@@ -19,7 +31,6 @@ class EmailTextField extends StatelessWidget {
           ),
         ),
         prefixIcon: const Icon(Icons.email),
-        helperText: 'Email is not valid',
       ),
     );
   }
