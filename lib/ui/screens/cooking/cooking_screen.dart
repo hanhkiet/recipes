@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:recipes/data/recipe.dart';
+import 'package:get_it_mixin/get_it_mixin.dart';
+import 'package:recipes/singletons.dart';
 import 'package:recipes/ui/screens/cooking/widgets/cooking_step.dart';
 
-class CookingScreen extends StatelessWidget {
+class CookingScreen extends StatefulWidget with GetItStatefulWidgetMixin {
   CookingScreen({super.key});
 
-  final RecipeData data = recipesData[1];
+  @override
+  State<CookingScreen> createState() => _CookingScreenState();
+}
+
+class _CookingScreenState extends State<CookingScreen> with GetItStateMixin {
+  late final currentStep = cookingLogic.currentStep..addListener(_handleChange);
+
+  void _handleChange() => setState(() {});
+
+  void _handleNextStep() => cookingLogic.nextStep();
+
+  void _handleRestart() {}
+
+  void _handleStop() {}
+
+  void _handleFinish() {}
 
   @override
   Widget build(BuildContext context) {
+    final data = cookingLogic.data;
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -16,7 +34,7 @@ class CookingScreen extends StatelessWidget {
             backgroundColor:
                 Theme.of(context).colorScheme.surface.withOpacity(.8),
             title: Text(
-              'Chicken Roast',
+              data.title,
               style: Theme.of(context).textTheme.displaySmall,
             ),
             floating: true,
@@ -27,8 +45,14 @@ class CookingScreen extends StatelessWidget {
               childCount: data.steps.length,
               (BuildContext context, int index) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: CookingStep(data: data.steps[index]),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8.0,
+                    vertical: 4.0,
+                  ),
+                  child: CookingStep(
+                    data: data.steps[index],
+                    isDone: index < currentStep.value,
+                  ),
                 );
               },
             ),
@@ -38,20 +62,25 @@ class CookingScreen extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text('Next'),
-          ),
-          const SizedBox(width: 12),
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text('Stop'),
-          ),
-        ],
-      ),
+      floatingActionButton: !cookingLogic.isFinalStep()
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: _handleNextStep,
+                  child: const Text('Next'),
+                ),
+                const SizedBox(width: 12),
+                ElevatedButton(
+                  onPressed: _handleStop,
+                  child: const Text('Stop'),
+                ),
+              ],
+            )
+          : ElevatedButton(
+              onPressed: _handleFinish,
+              child: const Text('Finish'),
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }

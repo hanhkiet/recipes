@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:recipes/singleton.dart';
+import 'package:recipes/singletons.dart';
 import 'package:recipes/ui/screens/cooking/cooking_screen.dart';
+import 'package:recipes/ui/screens/cooking/happy_eating_screen.dart';
 import 'package:recipes/ui/screens/personalization/personalization_done.dart';
 import 'package:recipes/ui/screens/personalization/personalization_height.dart';
 import 'package:recipes/ui/screens/personalization/personalization_introduction.dart';
@@ -27,11 +28,12 @@ class ScreenPaths {
   static String personalizationHeight = '/personalization-height';
   static String personalizationWeight = '/personalization-weight';
   static String cooking = '/cooking';
+  static String happyEating = '/happy-eating';
   static String testData = '/test-data';
 }
 
 final appRouter = GoRouter(
-  initialLocation: ScreenPaths.personalizationIntroduction,
+  initialLocation: ScreenPaths.cooking,
   routes: [
     ShellRoute(
       builder: (context, router, navigator) {
@@ -69,6 +71,9 @@ final appRouter = GoRouter(
         GoRoute(
             path: ScreenPaths.cooking,
             builder: (context, state) => CookingScreen()),
+        GoRoute(
+            path: ScreenPaths.happyEating,
+            builder: (context, state) => const HappyEatingScreen()),
         GoRoute(
           path: ScreenPaths.testData,
           builder: (context, state) => FutureBuilder<PostgrestList>(
