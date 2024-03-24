@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipes/utils/regex.dart';
 
 class PasswordTextField extends StatefulWidget {
   const PasswordTextField({
@@ -7,12 +8,14 @@ class PasswordTextField extends StatefulWidget {
     this.emptyErrorMessage,
     this.invalidErrorMessage,
     this.initialValue,
+    this.onChanged,
   });
 
   final String? label;
 
   final String? emptyErrorMessage;
   final String? invalidErrorMessage;
+  final Function(String value)? onChanged;
 
   final String? initialValue;
 
@@ -29,33 +32,39 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       initialValue: widget.initialValue,
       obscureText: !_isPasswordShow,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return widget.emptyErrorMessage;
-        }
-        if (value.length < 6) {
-          return widget.invalidErrorMessage;
-        }
-        return null;
-      },
+      validator: _handleValidating,
       decoration: InputDecoration(
-          labelText: widget.label,
-          labelStyle: TextStyle(
-            color: Theme.of(context).colorScheme.onSurface,
+        labelText: widget.label,
+        labelStyle: TextStyle(
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.primary,
           ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.primary,
-            ),
-          ),
-          prefixIcon: const Icon(Icons.password_outlined),
-          suffixIcon: IconButton(
-            onPressed: _handleTogglingVisibility,
-            icon: _isPasswordShow
-                ? const Icon(Icons.visibility)
-                : const Icon(Icons.visibility_off),
-          )),
+        ),
+        prefixIcon: const Icon(Icons.password_outlined),
+        suffixIcon: IconButton(
+          onPressed: _handleTogglingVisibility,
+          icon: _isPasswordShow
+              ? const Icon(Icons.visibility)
+              : const Icon(Icons.visibility_off),
+        ),
+      ),
+      onChanged: widget.onChanged,
     );
+  }
+
+  String? _handleValidating(value) {
+    if (value == null || value.isEmpty) {
+      return widget.emptyErrorMessage;
+    }
+
+    if (!passwordRegex.hasMatch(value)) {
+      return widget.invalidErrorMessage;
+    }
+
+    return null;
   }
 
   void _handleTogglingVisibility() => setState(() {

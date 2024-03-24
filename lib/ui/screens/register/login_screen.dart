@@ -22,6 +22,7 @@ class LoginScreen extends StatelessWidget {
             initialValue: accountLogic.email,
             emptyErrorMessage: 'Please enter your email',
             invalidErrorMessage: 'Email is not valid (e.g. john.doe@mail.com)!',
+            onChanged: _handleEmailChanged,
           ),
           const SizedBox(height: 16.0),
           PasswordTextField(
@@ -29,6 +30,7 @@ class LoginScreen extends StatelessWidget {
             label: 'Password',
             emptyErrorMessage: 'Please enter your password',
             invalidErrorMessage: 'Password length must be greater than 6!',
+            onChanged: _handlePasswordChange,
           ),
           const SizedBox(height: 16.0),
           Container(
@@ -61,4 +63,8 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
+
+  String _handleEmailChanged(String value) => accountLogic.email = value;
+
+  String _handlePasswordChange(String value) => accountLogic.password = value;
 }
