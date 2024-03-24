@@ -154,10 +154,10 @@ packages:
     dependency: "direct dev"
     description:
       name: flutter_native_splash
-      sha256: "58fb249fb19ffe979e4ad288de018a118768988b1f497e6ff0b23ead6f5a1bc5"
+      sha256: edf39bcf4d74aca1eb2c1e43c3e445fd9f494013df7f0da752fefe72020eedc0
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.13"
+    version: "2.4.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -168,6 +168,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  functional_listener:
+    dependency: transitive
+    description:
+      name: functional_listener
+      sha256: "026d1bd4f66367f11d9ec9f1f1ddb42b89e4484b356972c76d983266cf82f33f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.1"
   functions_client:
     dependency: transitive
     description:
@@ -184,14 +192,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.6.7"
+  get_it_mixin:
+    dependency: "direct main"
+    description:
+      name: get_it_mixin
+      sha256: "0ab5c9f3cdaab813ec396de5d43ee3833c418424b3a99bec0071fcbf693c0bad"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.2"
   go_router:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "170c46e237d6eb0e6e9f0e8b3f56101e14fb64f787016e42edd74c39cf8b176a"
+      sha256: "7ecb2f391edbca5473db591b48555a8912dde60edd0fb3013bd6743033b2d3f8"
       url: "https://pub.dev"
     source: hosted
-    version: "13.2.0"
+    version: "13.2.1"
   gotrue:
     dependency: transitive
     description:
