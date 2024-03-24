@@ -1,43 +1,64 @@
 import 'package:flutter/material.dart';
 
-class PasswordTextField extends StatelessWidget {
+class PasswordTextField extends StatefulWidget {
   const PasswordTextField({
     super.key,
     this.label,
-    this.helperText,
+    this.emptyErrorMessage,
+    this.invalidErrorMessage,
+    this.initialValue,
   });
 
   final String? label;
-  final String? helperText;
+
+  final String? emptyErrorMessage;
+  final String? invalidErrorMessage;
+
+  final String? initialValue;
+
+  @override
+  State<PasswordTextField> createState() => _PasswordTextFieldState();
+}
+
+class _PasswordTextFieldState extends State<PasswordTextField> {
+  bool _isPasswordShow = false;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: true,
+      initialValue: widget.initialValue,
+      obscureText: !_isPasswordShow,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter your password';
+          return widget.emptyErrorMessage;
         }
         if (value.length < 6) {
-          return 'Your password length must be greater than 6';
+          return widget.invalidErrorMessage;
         }
         return null;
       },
       decoration: InputDecoration(
-        labelText: label,
-        labelStyle: TextStyle(
-          color: Theme.of(context).colorScheme.onSurface,
-        ),
-        border: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.primary,
+          labelText: widget.label,
+          labelStyle: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
           ),
-        ),
-        prefixIcon: const Icon(Icons.password_outlined),
-        suffixIcon: const Icon(Icons.visibility_off),
-        helperText: helperText ?? '',
-      ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+          prefixIcon: const Icon(Icons.password_outlined),
+          suffixIcon: IconButton(
+            onPressed: _handleTogglingVisibility,
+            icon: _isPasswordShow
+                ? const Icon(Icons.visibility)
+                : const Icon(Icons.visibility_off),
+          )),
     );
   }
+
+  void _handleTogglingVisibility() => setState(() {
+        _isPasswordShow = !_isPasswordShow;
+      });
 }

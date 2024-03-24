@@ -9,6 +9,6 @@ SupabaseAPIService get supabaseAPIService => GetIt.I<SupabaseAPIService>();
 PersonalizationLogic get personalizationLogic =>
     GetIt.I<PersonalizationLogic>();
 
-AccountLogic get registeringLogic => GetIt.I<AccountLogic>();
+AccountLogic get accountLogic => GetIt.I<AccountLogic>();
 
 SettingLogic get settingLogic => GetIt.I<SettingLogic>();

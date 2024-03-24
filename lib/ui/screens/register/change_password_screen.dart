@@ -15,12 +15,10 @@ class ChangePasswordScreen extends StatelessWidget {
           const SizedBox(height: 16),
           const PasswordTextField(
             label: 'New password',
-            helperText: 'Password must be at least 8 characters long',
           ),
           const SizedBox(height: 16),
           const PasswordTextField(
             label: 'Confirm password',
-            helperText: 'Password does not match',
           ),
           const SizedBox(height: 16),
           Container(

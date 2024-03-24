@@ -17,12 +17,10 @@ class RegisterScreen extends StatelessWidget {
           const SizedBox(height: 16.0),
           const PasswordTextField(
             label: 'Password',
-            helperText: 'Password must be at least 8 characters long',
           ),
           const SizedBox(height: 16.0),
           const PasswordTextField(
             label: 'Re-enter password',
-            helperText: 'Passwords must match',
           ),
           const SizedBox(height: 16.0),
           Container(

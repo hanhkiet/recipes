@@ -25,6 +25,7 @@ class _PersonalizationHeightState extends State<PersonalizationHeight> {
   }
 
   int _heightValue = 0;
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

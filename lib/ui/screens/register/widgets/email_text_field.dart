@@ -3,20 +3,28 @@ import 'package:flutter/material.dart';
 class EmailTextField extends StatelessWidget {
   const EmailTextField({
     super.key,
+    this.emptyErrorMessage,
+    this.invalidErrorMessage,
+    this.initialValue,
   });
-  final _emailPattern = r'^[^\.\s][\w\-\.{2,}]+@([\w-]+\.)+[\w-]{2,}$';
+
+  final String? emptyErrorMessage;
+  final String? invalidErrorMessage;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
-    final emailRegex = RegExp(_emailPattern);
+    final emailRegex = RegExp(r'^[^.\s][\w\-.{2,}]+@([\w-]+\.)+[\w-]{2,}$');
+
     return TextFormField(
+      initialValue: initialValue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter your email';
+          return emptyErrorMessage;
         }
         if (!emailRegex.hasMatch(value)) {
-          return 'Email format is wrong !';
+          return invalidErrorMessage;
         }
         return null;
       },
