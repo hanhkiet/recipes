@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:recipes/router.dart';
@@ -26,6 +25,7 @@ class _PersonalizationWeightState extends State<PersonalizationWeight> {
   }
 
   int _weightValue = 0;
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

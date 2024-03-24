@@ -68,7 +68,7 @@ final appRouter = GoRouter(
             builder: (context, state) => const PersonalizationDoneScreen()),
         GoRoute(
             path: ScreenPaths.cooking,
-            builder: (context, state) => CookingScreen()),
+            builder: (context, state) => const CookingScreen()),
         GoRoute(
           path: ScreenPaths.testData,
           builder: (context, state) => FutureBuilder<PostgrestList>(
