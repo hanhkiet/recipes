@@ -21,4 +21,32 @@ class SupabaseAPIService {
     final response = await client.from('test').select();
     return response;
   }
+
+  Future<AuthResponse> signUpNewUser({
+    required String email,
+    required String password,
+  }) async {
+    final AuthResponse res = await client.auth.signUp(
+      email: email,
+      password: password,
+    );
+
+    return res;
+  }
+
+  Future<AuthResponse> signInWithEmail({
+    required String email,
+    required String password,
+  }) async {
+    final AuthResponse res = await client.auth.signInWithPassword(
+      email: email,
+      password: password,
+    );
+
+    return res;
+  }
+
+  Future<void> signOut() async {
+    await client.auth.signOut();
+  }
 }

@@ -12,8 +12,18 @@ class PasswordTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       obscureText: true,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter your password';
+        }
+        if (value.length < 6) {
+          return 'Your password length must be greater than 6';
+        }
+        return null;
+      },
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(
