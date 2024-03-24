@@ -80,6 +80,30 @@ const recipesData = [
             'Preheat the oven to 180°C. Grease and flour two 9-inch round baking pans. Pour the batter into the prepared pans. Bake for 30-35 minutes, or until a toothpick inserted into the center comes out clean. Cool in the pans for 10 minutes, then remove to a wire rack to cool completely.',
         duration: Duration(minutes: 35),
       ),
+      RecipeStepData(
+        title: 'Bake the cake',
+        description:
+            'Preheat the oven to 180°C. Grease and flour two 9-inch round baking pans. Pour the batter into the prepared pans. Bake for 30-35 minutes, or until a toothpick inserted into the center comes out clean. Cool in the pans for 10 minutes, then remove to a wire rack to cool completely.',
+        duration: Duration(minutes: 35),
+      ),
+      RecipeStepData(
+        title: 'Bake the cake',
+        description:
+            'Preheat the oven to 180°C. Grease and flour two 9-inch round baking pans. Pour the batter into the prepared pans. Bake for 30-35 minutes, or until a toothpick inserted into the center comes out clean. Cool in the pans for 10 minutes, then remove to a wire rack to cool completely.',
+        duration: Duration(minutes: 35),
+      ),
+      RecipeStepData(
+        title: 'Bake the cake',
+        description:
+            'Preheat the oven to 180°C. Grease and flour two 9-inch round baking pans. Pour the batter into the prepared pans. Bake for 30-35 minutes, or until a toothpick inserted into the center comes out clean. Cool in the pans for 10 minutes, then remove to a wire rack to cool completely.',
+        duration: Duration(minutes: 35),
+      ),
+      RecipeStepData(
+        title: 'Bake the cake',
+        description:
+            'Preheat the oven to 180°C. Grease and flour two 9-inch round baking pans. Pour the batter into the prepared pans. Bake for 30-35 minutes, or until a toothpick inserted into the center comes out clean. Cool in the pans for 10 minutes, then remove to a wire rack to cool completely.',
+        duration: Duration(minutes: 35),
+      ),
     ],
   ),
 ];
