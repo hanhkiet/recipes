@@ -1,31 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:recipes/utils/regex.dart';
 
-class PasswordTextField extends StatelessWidget {
+class PasswordTextField extends StatefulWidget {
   const PasswordTextField({
     super.key,
     this.label,
-    this.helperText,
+    this.emptyErrorMessage,
+    this.invalidErrorMessage,
+    this.initialValue,
+    this.onChanged,
   });
 
   final String? label;
-  final String? helperText;
+
+  final String? emptyErrorMessage;
+  final String? invalidErrorMessage;
+  final Function(String value)? onChanged;
+
+  final String? initialValue;
+
+  @override
+  State<PasswordTextField> createState() => _PasswordTextFieldState();
+}
+
+class _PasswordTextFieldState extends State<PasswordTextField> {
+  bool _isPasswordShow = false;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: true,
+      initialValue: widget.initialValue,
+      obscureText: !_isPasswordShow,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please enter your password';
-        }
-        if (value.length < 6) {
-          return 'Your password length must be greater than 6';
-        }
-        return null;
-      },
+      validator: _handleValidating,
       decoration: InputDecoration(
-        labelText: label,
+        labelText: widget.label,
         labelStyle: TextStyle(
           color: Theme.of(context).colorScheme.onSurface,
         ),
@@ -35,9 +44,30 @@ class PasswordTextField extends StatelessWidget {
           ),
         ),
         prefixIcon: const Icon(Icons.password_outlined),
-        suffixIcon: const Icon(Icons.visibility_off),
-        helperText: helperText ?? '',
+        suffixIcon: IconButton(
+          onPressed: _handleTogglingVisibility,
+          icon: _isPasswordShow
+              ? const Icon(Icons.visibility)
+              : const Icon(Icons.visibility_off),
+        ),
       ),
+      onChanged: widget.onChanged,
     );
   }
+
+  String? _handleValidating(value) {
+    if (value == null || value.isEmpty) {
+      return widget.emptyErrorMessage;
+    }
+
+    if (!passwordRegex.hasMatch(value)) {
+      return widget.invalidErrorMessage;
+    }
+
+    return null;
+  }
+
+  void _handleTogglingVisibility() => setState(() {
+        _isPasswordShow = !_isPasswordShow;
+      });
 }

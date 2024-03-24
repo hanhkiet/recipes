@@ -45,7 +45,7 @@ final appRouter = GoRouter(
             builder: (context, state) => const RegisterScreen()),
         GoRoute(
             path: ScreenPaths.login,
-            builder: (context, state) => LoginScreen()),
+            builder: (context, state) => const LoginScreen()),
         GoRoute(
             path: ScreenPaths.forgotPassword,
             builder: (context, state) => const ForgotPasswordScreen()),
